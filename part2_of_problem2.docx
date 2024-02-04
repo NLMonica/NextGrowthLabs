@@ -1,0 +1,51 @@
+Please answer the below questions:
+
+Question A :Write and share a small note about your choice of system to schedule periodic tasks (such as downloading a list of ISINs every 24 hours). Why did you choose it? Is it reliable enough; Or will it scale? If not, what are the problems with it? And, what else would you recommend to fix this problem at scale in production?
+Answer :  CRONTAB - The cron command-line utility is a job scheduler on Unix-like operating systems. Users who set up and maintain software environments use cron to schedule jobs, also known as cron jobs, to run periodically at fixed times, dates, or intervals. The schedule is called the crontab, which is also the name of the program used to edit that schedule. Cron is reliable but its not completely scalable due to occasional faults at executing commands. Cron jobs are a Linux/Unix-based tool and do not natively work on Windows operating systems. Windows does have its own task scheduling tool called Task Scheduler, but it operates differently from cron jobs and may require additional setup and configuration to achieve similar functionality. 
+
+Linux Crontab Syntax is as follows:
+
+MIN HOUR DOM MON DOW  CMD 
+
+MIN -  Specifies the minute when the command will run ( 0 - 59)
+HOUR - Specifies the no of hour (0 - 23)
+DOM - Specifies the date of the month (1 - 31)
+MON - Specifies the Month (1 - 12)
+DOW - Specifies the day of week (0 - 6)
+CMD -  Represents the actual command or script to be run at scheduled time
+
+Examples of tasks are:
+
+	1) To schedule a background Cron job for every 30 minutes.
+	*/10 * * * * /home/check-disk-space
+	
+ 2)  To schedule a Cron job beginning of every month using @monthly
+	@monthly /home/bin/tape-backup
+	
+ 3)  To execute a linux command after every reboot using @reboot
+	@reboot CMD
+
+
+
+
+
+
+Question B: In what circumstances would you use Flask instead of Django and vice versa? 
+Answer : Flask over Django as flask is easy to learn, understand and work with for beginners. 
+Flask is a free open source framework but it will cost for maintenance and security. Its is used 
+to develop projects with fewer codes in short time. Due to its light weight codebase it is faster 
+and more flexible than Django, as it has limited libraries. It gives a quick start to the web development
+process of complex applications. It also gives full control to developers for creating applications. 
+Flask has in-built server and debugger which makes unit-testing faster and makes space for experiments. 
+There are several big companies that use flask such as Reddit, Airbnb, Netflix and Uber.
+
+
+Django over Flask as Django is a free open source, fast development framework suitable for low-budget projects. 
+Flask relies on its extensions for many functions such as security measures or for databases but Django comes 
+with many such functionalities like Database support, Multiple page applications and bootstrapping tool already 
+built into framework. Django is best suitable for advanced python developers. It has high scalability and long 
+codebase which makes it suitable for large scale projects. It comes with built in security features for full 
+stack solutions. Django supports dynamic HTML pages and is in-demand framework for big tech companies such as 
+Instagram, Udemy, Spotify and Nasa.
+
+
