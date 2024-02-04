@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin's Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            
+            
+            height: 100%;
+            width: 100%;
+            background-color: #f4f4f4;
+        }
+        #container {
+            width: 150px;
+            background-color: #f0f;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0.1, 0, 0.1);
+            display: flex;
+            margin-right: 10cm;
+        }
+        #left-pane {
+            width: 200px;
+            padding: 20px;
+            height: 713px;
+        }
+        #content {
+            width: 400px;
+            padding: 20px;
+
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border:#f4f4f4;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        #drop-area {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #drop-area.highlight {
+            border-color: #007bff;
+        }
+
+        #file-preview {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-pane">
+            <form>
+                <button id="Home" >Home</button>
+            </form>
+            <button id="+ Add apps">+ Add Apps</button>
+            <form action="{% url 'admin_logout' %}">
+                <button id="logout-button">Logout</button>
+           </form>
+        </div>
+    </div>
+    <div id="content">
+        <h1>Hello Admin</h1>
+        <form action="{% url 'push_data' %}" method="post" enctype="multipart/form-data" class="drop-area">
+           
+            {% csrf_token %}
+            <input type="file" name="image">
+            <br><br>
+            <input type='text' id="app_name" name="app_name" placeholder='Enter App name' onkeyup="checkInput()">
+            <input type='text' id="app_url" name="app_url" placeholder='Enter App Link'>
+        
+        <br><br>
+
+        <label for="first_dd">Category:</label>
+        <select name="category" id="first_dd">
+            <option value="Entertainment">Entertainment</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Educational">Educational</option>
+        </select>
+
+        <br><br>
+
+        <label for="second_dd">Sub-Category:</label>
+        <select name="Sub-Category" id="second_dd">
+            <option value="OTT">OTT</option>
+            <option value="">Social Media</option>
+            <option value="Educational">Educational</option>
+        </select>
+        <br><br>
+            <input style="background-color: aquamarine; width: 150px;" type='text' id="points" name="points" placeholder='Enter Points' onkeyup="checkInput()">
+        <br><br>
+
+        <button id="submit-button" style="display:none;" type="submit" value="submit">Proceed to add the App</button>
+
+        <script>
+            function checkInput() {
+                var inputField = document.getElementById("points");
+                var hiddenButton = document.getElementById("submit-button");
+
+                if (inputField.value.trim() !== "") {
+                    hiddenButton.style.display = "inline-block";
+                } else {
+                    hiddenButton.style.display = "none";
+                }
+            }
+        </script>
+        <br><br>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            
+            
+            height: 100%;
+            width: 100%;
+            background-color: #f4f4f4;
+        }
+        #container {
+            width: 150px;
+            background-color: #f0f;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0.1, 0, 0.1);
+            display: flex;
+            margin-right: 10cm;
+        }
+        #left-pane {
+            width: 200px;
+            padding: 20px;
+        }
+        #content {
+            width: 400px;
+            padding: 20px;
+
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border:#f4f4f4;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .display-flex {
+            display: flex !important;
+
+        }
+
+        .margin-260 {
+            margin-left: 260px !important;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-pane">
+            <button id="Home">Home</button>
+            <button id="Task">Task</button>
+            <form action="{% url 'user_logout' %}">
+                <button id="logout-button">Logout</button>
+           </form>
+        </div>
+        
+    </div>
+    <div id="content">
+        {% csrf_token %}
+        <h1>Hello {{user}}</h1>
+        {% for element in elements %}
+        {% if element.iscard %}
+        <div id="element" class="card">
+            <div class="display-flex">
+                <img src="C:\Users\panna\OneDrive\Desktop\Monica\web_dev_nxtlab\app_nxtlab\media\images\IMG_0415_2.jpg"/> 
+                <div> 
+                    <div>{{element.app_name}}</div>
+                    <button onclick="action({{element|safe}});">View Details</button>
+                </div>
+                <div class="margin-260">{{element.points}}</div>   
+            </div>        
+        </div>
+        {% else %}
+        <div>
+            <div class="display-flex">
+                <img src="C:\Users\panna\OneDrive\Desktop\Monica\web_dev_nxtlab\app_nxtlab\media\images\IMG_0415_2.jpg"/> 
+                <div> 
+                    <div>{{element.app_name}}</div>
+                    <p><a href="abc">View Details</a></p>
+                </div>
+                <div class="margin-260">{{element.points}}</div>   
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    
+
+</body>
+</html>
+<script>
+    function action(element){
+        // let element = document.getElementById("element")
+        console.log('Monica',element)
+    }
+
+</script>
+
+
